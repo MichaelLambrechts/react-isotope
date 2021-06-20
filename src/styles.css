@@ -1,0 +1,9 @@
+.isotope-container {
+  position: relative;
+}
+.card {
+  position: absolute;
+  background-color: gray;
+  border-width: 3px;
+  border-style: solid black;
+}
