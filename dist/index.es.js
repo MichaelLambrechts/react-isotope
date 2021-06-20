@@ -53,8 +53,8 @@ function styleInject(css, ref) {
   }
 }
 
-var css = "/* add css styles here (optional) */\n\n.styles_isotope-container__3X0JH {\n  position: relative;\n}\n.styles_card__1i0k3 {\n  position: absolute;\n  background-color: gray;\n  border-width: 3px;\n  border-style: solid black;\n}\n\n.styles_test__32Qsm {\n  background-color: blue;\n}\n\n.styles_test1__3q7XI {\n  background-color: red;\n}\n";
-var styles = {"isotope-container":"styles_isotope-container__3X0JH","card":"styles_card__1i0k3","test":"styles_test__32Qsm","test1":"styles_test1__3q7XI"};
+var css = "";
+var styles = {};
 styleInject(css);
 
 var useState$1 = useState, useEffect$1 = useEffect, useMemo$1 = useMemo;
@@ -82,8 +82,7 @@ var index = (function (props) {
                 left: "" + (col ? 10 * col * w + "px" : 0),
                 top: "" + (row ? 10 * row * h + "px" : 0),
                 transform: "translate(" + getX(col, unitWidth) + "px, " + getY(row, unitHeight) + "px)",
-                position: "absolute",
-                backgroundColor: "gray",
+                position: "absolute"
             };
             return __assign({}, child, { props: __assign({}, child.props, { style: style }) });
         });
