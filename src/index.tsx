@@ -31,24 +31,18 @@ const getY = (row: number, height: number) => {
 };
 
 export default (props: IsoTopeGridProps) => {
-  const {
-    children,
-    gridLayout,
-    unitWidth,
-    unitHeight,
-    noOfCols,
-    filters
-  } = props;
+  const { children, gridLayout, unitWidth, unitHeight, noOfCols, filters } =
+    props;
 
   const [cards, udpateCards] = useState(gridLayout);
 
   const clonedChildrens = useMemo(
     () =>
       children
-        .filter(child => cards.findIndex(g => g.id === child.key) !== -1)
-        .map(child => {
+        .filter((child) => cards.findIndex((g) => g.id === child.key) !== -1)
+        .map((child) => {
           const { key } = child;
-          const layoutIndex = cards.findIndex(g => g.id === key);
+          const layoutIndex = cards.findIndex((g) => g.id === key);
           const cardLayout = cards[layoutIndex];
           const { h = 1, w = 1, col, row } = cardLayout;
           const style = {
@@ -63,16 +57,14 @@ export default (props: IsoTopeGridProps) => {
             )}px)`,
             position: "absolute",
             backgroundColor: "gray",
-            borderWidth: "3px",
-            borderStyle: "solid black"
           };
 
           return {
             ...child,
             props: {
               ...child.props,
-              style
-            }
+              style,
+            },
           };
         }),
     [cards, children, unitHeight, unitWidth, noOfCols]
@@ -82,14 +74,14 @@ export default (props: IsoTopeGridProps) => {
     let currentCol = 0;
 
     const intersection = (arr1: string[], arr2: string[]) =>
-      arr1.filter(i => -1 !== arr2.findIndex(a => a === i));
+      arr1.filter((i) => -1 !== arr2.findIndex((a) => a === i));
 
     const checkedFilterLabels = filters
-      .filter(f => f.isChecked)
-      .map(f => f.label);
+      .filter((f) => f.isChecked)
+      .map((f) => f.label);
 
     const filteredCards = gridLayout.filter(
-      card =>
+      (card) =>
         intersection(checkedFilterLabels, card.filter).length ||
         checkedFilterLabels.includes("all")
     );
@@ -100,7 +92,7 @@ export default (props: IsoTopeGridProps) => {
       return {
         ...card,
         row: Math.floor(i / noOfCols),
-        col: currentCol++
+        col: currentCol++,
       };
     });
     udpateCards(mappedCards);
